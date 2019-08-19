@@ -29,7 +29,7 @@ void display(int *s, int t) {
 	printf("\n");
 }
 
-int main(int ) {
+int main() {
 	int stack[100], top = -1;
 
 	push(stack, &top, 1);
