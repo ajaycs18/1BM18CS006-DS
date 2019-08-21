@@ -18,9 +18,6 @@ char pop(char stack[], int *top) {
 
 int precedence(char c) {
   switch (c) {
-    case '(':
-    case ')':
-      return 0;
     case '+':
     case '-':
       return 1;
@@ -49,7 +46,7 @@ int main(int argc, char **argv) {
       printf("%c", exp[i]);
     } 
     else {
-      if (exp[i] == '(')
+      if (exp[i] == '(' || precedence(exp[i]) > precedence(stack[top]))
         push(stack, &top, exp[i]);
 
       else if (exp[i] == ')') {
@@ -57,13 +54,9 @@ int main(int argc, char **argv) {
         while ((c = pop(stack, &top)) != '(') printf("%c", c);
       } 
 
-      else if (precedence(exp[i]) < precedence(stack[top])) {
+      else {
         while (precedence(stack[top]) >= precedence(exp[i]))
           printf("%c", pop(stack, &top));
-        push(stack, &top, exp[i]);
-      }
-
-      else {
         push(stack, &top, exp[i]);
       }
     }
