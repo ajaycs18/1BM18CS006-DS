@@ -37,13 +37,15 @@ int isOperand(char c) {
 }
 
 int main(int argc, char **argv) {
-  char *exp = argv[1];
+  char *exp;
+  fgets(exp, 100, stdin);
   char stack[100];
-  int top = -1;
+  int top = -1, i;
 
-  for (int i = 0; exp[i] != '\0'; i++) {
+  for (i = 0; exp[i] != '\n'; i++) {
     if (isOperand(exp[i])) {
-      printf("%c", exp[i]);
+        if (exp[i] != '(' && exp[i] != ')')
+            printf("%c", exp[i]);
     } 
     else {
       if (exp[i] == '(' || precedence(exp[i]) > precedence(stack[top]))
