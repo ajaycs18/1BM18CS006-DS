@@ -18,9 +18,6 @@ char pop(char stack[], int *top) {
 
 int precedance(char c) {
   switch (c) {
-    case '(':
-    case ')':
-      return 0;
     case '+':
     case '-':
       return 1;
@@ -35,7 +32,7 @@ int precedance(char c) {
 }
 
 int isOperand(char c) {
-  if (precedance(c) == -1) return 1;
+  if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z')) return 1;
   return 0;
 }
 
@@ -48,29 +45,25 @@ int main(int argc, char **argv) {
     if (isOperand(exp[i])) {
       printf("%c", exp[i]);
     } 
-    else {
-      if (exp[i] == '(')
-        push(stack, &top, exp[i]);
-
-      else if (exp[i] == ')') {
-        char c;
-        while ((c = pop(stack, &top)) != '(') printf("%c", c);
-      } 
-
-      else if (precedance(exp[i]) < precedance(stack[top])) {
-        while (precedance(stack[top]) >= precedance(exp[i]))
-          printf("%c", pop(stack, &top));
-        push(stack, &top, exp[i]);
-      }
-
-      else {
-        push(stack, &top, exp[i]);
-      }
+    else if (exp[i] == '(') {
+      push(stack, &top, exp[i]);
     }
+    else if (exp[i] == ')') {
+      char c;
+      while ((c = pop(stack, &top)) != '(') printf("%c", c);
+    } 
+    else if (precedance(exp[i]) > precedance(stack[top])) {
+      push(stack, &top, exp[i]);
+    }
+    else { 
+      while (precedance(stack[top]) >= precedance(exp[i]))
+        printf("%c", pop(stack, &top));
+      push(stack, &top, exp[i]);
+      }
   }
 
   while (top > -1) {
-    if (stack[top] != '(' && stack[top] != ')') printf("%c", pop(stack, &top));
+    printf("%c", pop(stack, &top));
   }
 
   printf("\n");
