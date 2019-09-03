@@ -5,7 +5,7 @@
 typedef int queue[SIZE];
 
 void insert(queue q, int *f, int *r, int ele) {
-	if (*f == *r + 1 || *r == SIZE-1) {
+	if (*f == *r + 1 || (*f == 0 && *r == SIZE-1)) {
 		printf("overflow\n");
 		return;
 	}
@@ -16,15 +16,16 @@ void insert(queue q, int *f, int *r, int ele) {
 }
 
 int delete(queue q, int *f, int *r) {
+        if (*f == -1) {
+                printf("underflow\n");
+                return -9999;
+        }
+
 	int item = q[*f];
 
-	if (*f > *r) {
-		printf("underflow\n");
-		*f = *r = -1;
-		return -999;
-	}
+	if (*f == *r) *f = *r = -1;
+	else *f = (*f + 1) % SIZE;
 
-	*f = (*f + 1) % SIZE;
 	return item;
 }
 
