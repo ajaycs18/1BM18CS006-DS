@@ -31,7 +31,7 @@ void display(queue q, int f, int r) {
 
 int main() {
 	queue q;
-	int f = 0, r = 0; // or f = 0, r = -1
+	int f = 0, r = 0;
 	int choice;
 
 	do {
