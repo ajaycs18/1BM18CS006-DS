@@ -15,18 +15,7 @@ NODE getNode() {
 	return n;
 }
 
-NODE createLL(int val) {
-	NODE n = getNode();
-	n->val = val;
-	return n;
-}
-
 NODE insertBeg(NODE head, int val) {
-	if (head == NULL) {
-		head = getNode();
-		head->val = val;
-		return head;
-	}
 	NODE n = getNode();
 	n->val = val;
 	n->next = head;
@@ -34,17 +23,16 @@ NODE insertBeg(NODE head, int val) {
 	return head;
 }
 
-void insertEnd(NODE head, int val){
-	if (head == NULL) {
-		printf("list is empty\n");
-		return;
-	}
+NODE insertEnd(NODE head, int val) { 
 	NODE temp = head, n = getNode();
 	n->val = val;
+	if (head == NULL) 
+	    return n;
 	while (temp->next != NULL) {
 		temp = temp->next;
 	}
 	temp->next = n;
+	return head;
 }
 
 NODE insertPos(NODE head, int val, int pos) {
@@ -94,20 +82,15 @@ int main() {
 	NODE head = NULL;
 	do {
 		int choice, val;
-		printf("1. create ll\n2. insert beg\n3. insert at pos\n4. insert end\n5. display ll\n6. quit\n");
+		printf("1. insert beg\n2. insert at pos\n3. insert end\n4. display ll\n5. quit\n");
 	      	scanf("%d", &choice);
 		switch (choice) {
-			case 1:
-			       	printf("enter value of first node: ");
-				scanf("%d", &val);
-				head = createLL(val);	
-				break;
-			case 2: 
+			case 1: 
 				printf("enter value of node: ");
 				scanf("%d", &val);
 				head = insertBeg(head, val);
 				break;
-			case 3: 
+			case 2: 
 				printf("enter value of node: ");
 				int pos;
 				scanf("%d", &val);
@@ -115,19 +98,18 @@ int main() {
 				scanf("%d", &pos);
 				head = insertPos(head, val, pos);
 				break;
-			case 4: 
+			case 3: 
 				printf("enter value of node: ");
 				scanf("%d", &val);
-				insertEnd(head, val);
+				head = insertEnd(head, val);
 				break;
 
-			case 5:
+			case 4:
 				displayLL(head);
 				break;
 
-			case 6: 
+			case 5: 
 				return 0; // return from main()
 		}	
 	} while (1);
 }
-
