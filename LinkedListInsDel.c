@@ -15,6 +15,10 @@ NODE getNode() {
 		description: create and return a node
 	*/
 	NODE n = malloc(sizeof(struct node));
+	if (n == NULL) {
+		printf("no free space in heap\n");
+		return -1;
+	}
 	n->val = 0;
 	n->next = NULL;
 	return n;
