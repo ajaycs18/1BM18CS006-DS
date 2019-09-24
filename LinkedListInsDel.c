@@ -9,6 +9,11 @@ struct node {
 typedef struct node* NODE;
 
 NODE getNode() {
+	/*
+		return type: struct node*
+		parameters: none
+		description: create and return a node
+	*/
 	NODE n = malloc(sizeof(struct node));
 	n->val = 0;
 	n->next = NULL;
@@ -16,6 +21,11 @@ NODE getNode() {
 }
 
 NODE insertBeg(NODE head, int val) {
+	/*
+		return type: struct node*
+		parameters: head of LL, value to be inserted
+		description: prepend value to beginning of LL
+	*/
 	NODE n = getNode();
 	n->val = val;
 	n->next = head;
@@ -24,6 +34,11 @@ NODE insertBeg(NODE head, int val) {
 }
 
 NODE insertEnd(NODE head, int val) { 
+	/*
+		return type: struct node*
+		parameters: head of LL, value to be inserted
+		description: append given value to LL 
+	*/
 	NODE temp = head, n = getNode();
 	n->val = val;
 	if (head == NULL) 
@@ -36,6 +51,11 @@ NODE insertEnd(NODE head, int val) {
 }
 
 NODE insertPos(NODE head, int val, int pos) {
+	/*
+		return type: struct node*
+		parameters: head of LL, value to be inserted, position to be inserted in
+		description: insert given value at given position
+	*/
 	if (head == NULL) {
 		if (pos == 1) {
 			head = getNode();
@@ -66,6 +86,11 @@ NODE insertPos(NODE head, int val, int pos) {
 }
 
 NODE deleteBeg(NODE head) {
+	/*
+		return type: struct node*
+		parameters: head of LL
+		description: delete first element of LL
+	*/
 	if (head == NULL) {
 		printf("list is empty\n");
 		return NULL;
@@ -78,6 +103,11 @@ NODE deleteBeg(NODE head) {
 }
 
 NODE deleteEnd(NODE head) {
+	/*
+		return type: struct node*
+		parameters: head of LL
+		description: delete last element of LL
+	*/
 	if (head == NULL) {
 		printf("list is empty\n");
 		return NULL;
@@ -98,6 +128,11 @@ NODE deleteEnd(NODE head) {
 }
 
 NODE deleteEle(NODE head, int ele) {
+	/*
+		return type: struct node*
+		parameters: head of LL, element to delete
+		description: delete given element from LL
+	*/
 	if (head == NULL) {
 		printf("list is empty\n");
 		return NULL;
@@ -126,6 +161,11 @@ NODE deleteEle(NODE head, int ele) {
 }
 
 void displayLL(NODE head) {
+	/*
+		return type: void
+		parameters: head of LL
+		description: display the LL
+	*/
 	if (head == NULL) {
 		printf("list is empty\n");
 		return;
