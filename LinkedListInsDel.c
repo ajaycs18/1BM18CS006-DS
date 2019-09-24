@@ -143,10 +143,12 @@ NODE deleteEle(NODE head, int ele) {
 	}
 	else if (head->val == ele) {
 		printf("deleted element: %d\n", head->val);
-		free(head);
-		return NULL;
+		NODE temp = head;
+		free(temp);
+		head = head->next;
+		return head;
 	}
-	else {
+	else if (head->next != NULL) {
 		NODE curr = head->next, prev = head;
 		while (curr->val != ele) {
 			prev = curr;
@@ -159,6 +161,10 @@ NODE deleteEle(NODE head, int ele) {
 		printf("deleted element: %d\n", curr->val);
 		prev->next = curr->next;
 		free(curr);
+		return head;
+	}
+	else {
+		printf("element %d not found\n", ele);
 		return head;
 	}
 	
