@@ -12,7 +12,7 @@ NODE getNode() {
 	NODE n = malloc(sizeof(struct node));
 	if (n == NULL) {
 		printf("no free space in heap\n");
-		return -1;
+		exit(0);
 	}
 	n->val = 0;
 	n->next = NULL;
