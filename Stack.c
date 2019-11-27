@@ -31,7 +31,6 @@ void display(int *s, int t) {
 
 int main() {
 	int stack[100], top = -1;
-
 	push(stack, &top, 1);
 	push(stack, &top, 2);
 	push(stack, &top, 3);
