@@ -48,6 +48,7 @@ void getMarks(struct marks *s) {
   scanf("%f", &(s->JAVA));
 }
 
+
 void main() {
   struct marks student;
   clrscr();
